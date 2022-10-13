@@ -21,4 +21,15 @@ Python Env requirement :
    ```
    sudo docker run -it -p 8080:22 --gpus all gpuda bash
    ```
+# Run MaxCut sample on Docker
+1. go to gpu_kernel sub directory 
+   ```
+   cd ./gpu_kernel
+   ```
+2. Run maxcut sample to solve Maxcut test data located at ./data/beasley
+   ```
+   python maxcut_sample.py
+   ```
+3. Check output file "bqphist10000.txt" 10000 denotes it runs 10000 iterations and it will execute 100 runs for each test file then generate report in one line summary.
+The summary line include 'test_file_name   0.xxxx  [0.yy ...]' , xxxx is average rnu time(in seconeds), yy is percentage which is i% closed to solution(i is arrary index, 0 means DA find exact answer or event better as solution and 1 means there is 1% delta)
 
