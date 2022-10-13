@@ -25,7 +25,7 @@ RUN /usr/bin/python3.9 get-pip.py
 
 # Download tp annealing project
 WORKDIR /home/
-RUN git clone https://github.com/musk20020/QuantumAnnealing.git
+RUN git clone https://github.com/jerrycci/QuantumAnnealing.git
 RUN pip install -r /home/QuantumAnnealing/requirement.txt
 
 # ssh setup
