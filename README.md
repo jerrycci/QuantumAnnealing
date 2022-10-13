@@ -15,7 +15,7 @@ Python Env requirement :
 2. Download Dockerfile
 3. Build Docker Image
    ```
-   sudo docker build -t gpuda. --no-cache
+   sudo docker build -t gpuda . --no-cache
    ```
 4. Docker Run gpuda
    ```
