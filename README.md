@@ -22,6 +22,7 @@ Python Env requirement :
    sudo docker run -it -p 8080:22 --gpus all gpuda bash
    ```
 # Run MaxCut sample on Docker
+reference paper http://people.brunel.ac.uk/~mastjjb/jeb/bqp.pdf
 1. go to gpu_kernel sub directory 
    ```
    cd ./gpu_kernel
