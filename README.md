@@ -34,3 +34,4 @@ reference paper http://people.brunel.ac.uk/~mastjjb/jeb/bqp.pdf
 3. Check output file "g05hist10000.txt" 10000 denotes it runs 10000 iterations and it will execute 100 runs for each test file then generate report in one line summary.
 The summary line include 'test_file_name   0.xxxx  [0.yy ...]' , xxxx is average rnu time(in seconeds), yy is percentage which is i% closed to solution(i is arrary index, 0 means DA find exact answer or event better as solution and 1 means there is 1% delta)
 
+![image](maxcut.png)
