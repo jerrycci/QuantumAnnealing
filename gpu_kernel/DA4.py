@@ -132,7 +132,7 @@ class DA:
         #      self.betaStop, self.blocks, self.threads, self.spin, self.label_num)
         #################################################################################
 
-        da = cdll.LoadLibrary("/home/QuantumAnnealing/gpu_kernel/lib/DA4.so")
+        da = cdll.LoadLibrary("./lib/DA4.so")
         main = da.digitalAnnealing
         main.argtypes = [POINTER(c_int), POINTER(c_int), POINTER(c_int), POINTER(
             c_float), POINTER(c_float), c_int, c_int, c_float, c_float, c_int, c_int,
