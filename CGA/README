@@ -8,6 +8,7 @@ Example 2.
 CGA 2.0 package at ./CGA2.0-release folder
 Steps to install 
 Step 1. Download and unzip CGA2.0 package file compal_solver_nstc-2.0.0-py3-none-any.whl
+    7z x cga2.0-release.7z -p"password"
 Step 2. uninstall old compal_solver 
     pip uninstall compal_solver-nstc
 Step 3. install CGA2.0
