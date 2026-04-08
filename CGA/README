@@ -1,1 +1,14 @@
 CGA folder includes example program showing usage of Compal GPU Annealer.
+
+Example 1.
+  tsp-demo.py using CGA 1.0 API 
+Example 2.
+  maxcut_sample.py using CGA 2.0 API support init_spin variable 
+
+CGA 2.0 package at ./CGA2.0-release folder
+Steps to install 
+Step 1. Download and unzip CGA2.0 package file compal_solver_nstc-2.0.0-py3-none-any.whl
+Step 2. uninstall old compal_solver 
+    pip uninstall compal_solver-nstc
+Step 3. install CGA2.0
+    pip install ./compal_solver_nstc-2.0.0-py3-none-any.whl
