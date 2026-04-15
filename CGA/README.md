@@ -45,3 +45,235 @@ This library is compiled with support for the following NVIDIA GPU architectures
 | **sm_100** | **Blackwell (DC)** | B100, B200, GB200 Superchip |
 | **sm_120** | **Blackwell (Consumer)** | RTX 5090, RTX 5080 |
 
+
+# 📦 Compal Solver – CGA Python Package
+
+Compal Solver 提供 GPU-based QUBO 求解器，支援兩種 API：
+
+* **CGA 1.0** → `Quantix_GA`（基於 lattice file）
+* **CGA 2.0** → `CGA_Solver`（直接輸入 QUBO dict）
+
+
+# 🧠 Overview
+
+| Version | Class        | Input            | 特點             |
+| ------- | ------------ | ---------------- | -------------- |
+| CGA 1.0 | `Quantix_GA` | lattice file     | 與舊版 backend 相容 |
+| CGA 2.0 | `CGA_Solver` | Python QUBO dict | 更彈性、直接         |
+
+---
+
+# 🔹 CGA 1.0 — `Quantix_GA`
+
+## 📌 用途
+
+使用 **lattice file** 作為輸入的 QUBO solver。
+
+---
+
+## 📥 Initialization
+
+```python
+from compal_solver import Quantix_GA
+
+solver = Quantix_GA(lattice="qubo.txt")
+```
+
+---
+
+## ▶️ Run
+
+```python
+result, energy, count, timeout_flag = solver.run(
+    init_spin=None,
+    batch_factor=10.0,
+    main_factor=0.1,
+    energy_stop=-9223372036854775808,
+    run_time=10,
+    debug_info=0,
+    N=0,
+    check_flag=0,
+    coefficient=64,
+    num_results=100
+)
+```
+
+---
+
+## 📤 Return Values
+
+| 參數             | 說明            |
+| -------------- | ------------- |
+| `result`       | 解 (bit array) |
+| `energy`       | 對應 energy     |
+| `count`        | 解的數量          |
+| `timeout_flag` | 是否 timeout    |
+
+---
+
+## 📄 Lattice File Format
+
+```
+<bin_size> <offset>
+i j value
+i j value
+...
+```
+
+---
+
+# 🔹 CGA 2.0 — `CGA_Solver`
+
+## 📌 用途
+
+直接使用 Python dict 表示 QUBO（推薦使用）
+
+---
+
+## 📥 Initialization
+
+```python
+from compal_solver import CGA_Solver
+
+Q = {
+    (0, 0): -1,
+    (1, 1): -1,
+    (0, 1): 2
+}
+
+variables = ["x0", "x1"]
+
+solver = CGA_Solver(
+    quadric=Q,
+    offset=0.0,
+    variables=variables
+)
+```
+
+---
+
+## ▶️ Run
+
+```python
+sampleset, count, timeout_flag, overflow_flag = solver.run(
+    init_spin=None,
+    batch_factor=10.0,
+    main_factor=0.1,
+    energy_stop=-9223372036854775808,
+    run_time=10,
+    debug_info=0,
+    N=0,
+    check_flag=0,
+    coefficient=64,
+    num_results=100
+)
+```
+
+---
+
+## 📤 Return Values
+
+| 參數              | 說明                |
+| --------------- | ----------------- |
+| `sampleset`     | `dimod.SampleSet` |
+| `count`         | 解的數量              |
+| `timeout_flag`  | 是否 timeout        |
+| `overflow_flag` | 是否數值 overflow     |
+
+---
+
+## 📊 SampleSet 使用方式
+
+```python
+print(sampleset)
+
+best = sampleset.first
+print(best.sample)
+print(best.energy)
+```
+
+---
+
+# ⚙️ Common Parameters
+
+| 參數             | 說明                    |
+| -------------- | --------------------- |
+| `batch_factor` | 搜尋 batch 強度           |
+| `main_factor`  | 主演算法強度                |
+| `energy_stop`  | 提前停止條件                |
+| `run_time`     | 執行時間（秒）               |
+| `debug_info`   | debug 等級              |
+| `N`            | scaling（10^N）         |
+| `check_flag`   | overflow 檢查           |
+| `coefficient`  | backend（16 / 32 / 64） |
+| `num_results`  | 回傳解數量                 |
+
+---
+
+
+## 2️⃣ Timeout Behavior
+
+* solver 會自動等待 backend 完成
+* `timeout_flag = 1` 表示超時但仍安全結束
+
+---
+
+## 3️⃣ Overflow Protection
+
+若 QUBO scaling 超過限制：
+
+```python
+overflow_flag = 1
+```
+
+---
+
+# 🆚 CGA1.0 vs CGA2.0
+
+| Feature | CGA1.0 | CGA2.0      |
+| ------- | ------ | ----------- |
+| Input   | file   | Python dict |
+| 易用性     | ❌      | ✅           |
+| 效能      | 相同     | 相同          |
+| 推薦      | legacy | ⭐⭐⭐⭐⭐       |
+
+---
+
+# ✅ Quick Example（推薦）
+
+```python
+from compal_solver import compal_solver as solver
+
+Q = {
+    (0, 0): -1,
+    (1, 1): -1,
+    (0, 1): 2
+}
+
+cga = solver.CGA_Solver(Q, 0.0, ["x0", "x1"])
+
+sampleset, count, timeout_flag, overflow_flag = cga.run()
+
+print(sampleset.first)
+```
+
+
+---
+
+## ❌ overflow_flag = 1
+
+👉 降低：
+
+```python
+N=0
+```
+
+---
+
+# 📬 Contact
+
+Compal GPU Annealer Team
+Jerry Chen
+
+---
+
