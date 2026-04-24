@@ -37,7 +37,7 @@ pip uninstall compal_solver-nstc
 #### Step 3: Install CGA 2.0
 Install the newly extracted wheel file.
 ```bash
-pip install ./compal_solver_nstc-2.0.0-py3-none-any.whl
+pip install ./compal_solver_nstc-2.0.1-py3-none-any.whl
 ```
 
 ---
