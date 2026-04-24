@@ -13,6 +13,15 @@ The **CGA** folder contains example programs demonstrating the implementation of
 ### Installation Guide (CGA 2.0)
 The CGA 2.0 package is located in the `./CGA2.0-release` folder. Follow these steps to upgrade your environment:
 
+> **Environment requirement:** CGA 2.0 should be installed in a **Python 3.10** environment.
+
+If needed, create and activate a Python 3.10 environment before installation:
+
+```bash
+conda create -n cga20 python=3.10
+conda activate cga20
+```
+
 #### Step 1: Extract the Package
 Download and unzip the CGA 2.0 package file.
 ```bash
@@ -228,6 +237,28 @@ overflow_flag = 1
 
 ---
 
+## 4️⃣ On-Prem Usage Time Statistics
+
+`on-prem/` 裡提供 `count_time_script.py`，可用來統計指定月份內所有 `.txt.debug` log 檔案第一行的 `run_time` 總和，方便彙整 CGA on-prem 使用時間。
+
+```bash
+cd on-prem
+python count_time_script.py --month=3
+```
+
+常用參數：
+
+| 參數 | 說明 |
+| ---- | ---- |
+| `--month` | 要統計的月份（1-12，必填） |
+| `--year` | 要統計的年份，未指定時使用當年度 |
+| `--dir` | log 資料夾路徑，未指定時讀取 script 同層的 `log/` |
+| `--verbose` / `-v` | 顯示每個檔案的詳細 run_time |
+
+更多說明請參考 [`on-prem/README.md`](./on-prem/README.md)。
+
+---
+
 # 🆚 CGA1.0 vs CGA2.0
 
 | Feature | CGA1.0 | CGA2.0      |
@@ -276,4 +307,3 @@ Compal GPU Annealer Team
 Jerry Chen
 
 ---
-
