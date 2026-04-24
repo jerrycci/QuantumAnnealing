@@ -88,8 +88,8 @@ def sample_to_array(sample, n):
 # 5. Compute QUBO energy x^T Q x
 # ================================================================
 def qubo_energy(Q, x):
-    return float(x @ Q @ x)
-
+    """x^T Q x using upper-triangle only, consistent with qubo_matrix_to_dict."""
+    return float(x @ np.triu(Q) @ x)
 
 # ================================================================
 # 6. True MaxCut cut value
@@ -126,7 +126,7 @@ if __name__ == "__main__":
         step = 0.16
         runtime = 60
 
-    print("\nStarting compal GA solver with init spin...")
+    print("\nStarting compal GA solver...")
     solver_obj = QUBO_Solver_from_matrix(Q)
 
     t0 = time.time()
