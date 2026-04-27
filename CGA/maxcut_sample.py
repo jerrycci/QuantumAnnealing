@@ -2,7 +2,7 @@ import numpy as np
 from glob import glob
 import time
 from compal_solver import compal_solver as solver
-
+import os
 
 # ================================================================
 # 1. Load Gset instance + build QUBO matrix
@@ -161,3 +161,4 @@ if __name__ == "__main__":
     cut = maxcut_cut_value(wmat, x)
     print("True MaxCut cut value =", cut)
     
+    os._exit(0)

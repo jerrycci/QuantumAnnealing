@@ -47,6 +47,7 @@ This library is compiled with support for the following NVIDIA GPU architectures
 
 | Compute Capability | Architecture | Notable GPU Models Supported |
 | :--- | :--- | :--- |
+| **sm_61** | **Volta** | RTX 1080ti |
 | **sm_70** | **Volta** | Tesla V100, Titan V |
 | **sm_80** | **Ampere (DC)** | A100 (SXM4/PCIe) |
 | **sm_86** | **Ampere (Consumer)** | RTX 3090, 3080, 3070, A6000, A40 |

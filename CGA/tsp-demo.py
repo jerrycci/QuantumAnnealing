@@ -13,6 +13,7 @@ from shapely.affinity import translate
 import numpy as np
 import itertools
 import time
+import os
 
 # Optional quantum packages (pyqubo + neal)
 try:
@@ -498,3 +499,4 @@ btn.pack(pady=10)
 draw_points_only()
 
 root.mainloop()
+os._exit(0)
